@@ -1,3 +1,4 @@
+import {FC} from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import DeleteBook from "./pages/DeleteBook";
@@ -5,7 +6,8 @@ import EditBook from "./pages/EditBook";
 import CreateBook from "./pages/CreateBook";
 import ShowBook from "./pages/ShowBook";
 
-function App() {
+
+const App: FC = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
