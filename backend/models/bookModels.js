@@ -4,15 +4,15 @@ const bookSchema = mongoose.Schema(
   {
     title: {
       type: String,
-      requiered: true,
+      required: true,
     },
     author: {
       type: String,
-      requiered: true,
+      required: true,
     },
     publishYear: {
       type: Number,
-      requiered: true,
+      required: true,
     },
   },
   {

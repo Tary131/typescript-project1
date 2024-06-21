@@ -39,6 +39,7 @@ const CreateBook: FC = () => {
       e: ChangeEvent<HTMLInputElement>,
       setter: Dispatch<SetStateAction<string>>
   ) => {
+    setError(null);
     setter(e.target.value);
   };
 

@@ -7,7 +7,9 @@ import BookCard from "../components/home/BookCard";
 import BookTable from "../components/home/BookTable";
 import { Book, BooksResponse } from "../types/book";
 
+
 type ViewType = "table" | "card";
+const isAuth:boolean  = true
 
 const Home: FC = () => {
   const [books, setBooks] = useState<Book[]>([]);
@@ -34,37 +36,55 @@ const Home: FC = () => {
   }, []);
 
   return (
-      <div className="p-4">
+    <>
+      {isAuth&& (<div className="p-4">
+
         <div className="flex justify-center items-center gap-x-4">
-          <button
-              className="bg-sky-300 hover:bg-sky-300 px-4 py-1 rounded-lg"
-              onClick={() => setShowType("table")}
-          >
-            Table
-          </button>
-          <button
-              className="bg-sky-300 hover:bg-sky-300 px-4 py-1 rounded-lg"
-              onClick={() => setShowType("card")}
-          >
-            Card
-          </button>
+          <label htmlFor="toggle" className="flex items-center cursor-pointer">
+            <div className="relative">
+              <input
+                  id="toggle"
+                  type="checkbox"
+                  className="sr-only"
+                  checked={showType === "card"}
+                  onChange={() =>
+                      setShowType(showType === "table" ? "card" : "table")
+                  }
+              />
+              <div className="block bg-gray-600 w-14 h-8 rounded-full"></div>
+              <div
+                  className="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition transform duration-300 ease-in-out"
+                  style={{
+                    transform:
+                        showType === "card"
+                            ? "translateX(1.5rem)"
+                            : "translateX(0)",
+                  }}
+              ></div>
+            </div>
+            <div className="ml-3 text-gray-700 font-medium">
+              {showType === "table" ? "Table" : "Card"}
+            </div>
+          </label>
         </div>
         <div className="flex justify-between items-center">
           <h1 className="text-3xl my-8">Book List</h1>
           <Link to="/books/create">
-            <MdOutlineAddBox className="text-sky-800 text-4xl" />
+            <MdOutlineAddBox className="text-sky-800 text-4xl"/>
           </Link>
         </div>
         {loading ? (
-            <Spinner />
+            <Spinner/>
         ) : error ? (
             <p className="text-red-600 font-bold">{error}</p>
         ) : showType === "table" ? (
-            <BookTable books={books} />
+            <BookTable books={books}/>
         ) : (
-            <BookCard books={books} />
+            <BookCard books={books}/>
         )}
-      </div>
+      </div>)}
+
+    </>
   );
 };
 

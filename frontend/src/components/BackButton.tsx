@@ -7,7 +7,7 @@ interface BackButtonProps {
   destination?: string;
 }
 
-const BackButton:FC<BackButtonProps>=({ destination = "/" } )=> {
+const BackButton:FC<BackButtonProps>=({ destination = "/home" } )=> {
   return (
     <div className=" flex">
       <Link
